@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ASKANDER BOT - بوت أغاني وقرآن للديسكورد</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f6f7fb;--card:#fff;--text:#1b1d2a;--muted:#5d6278;--brand:#5865f2;--brand2:#7b86ff;--line:#e3e5ef;--code:#eef0fb;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#12131c;--card:#1b1d2b;--text:#eef0ff;--muted:#a3a8c3;--line:#2b2e44;--code:#23263a;}
+}
+:root[data-theme="dark"]{--bg:#12131c;--card:#1b1d2b;--text:#eef0ff;--muted:#a3a8c3;--line:#2b2e44;--code:#23263a;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.hero{text-align:center;padding:64px 0 40px}
+.logo{font-size:56px}
+h1{font-size:clamp(32px,7vw,54px);margin:8px 0;font-weight:800;background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;max-width:560px;margin:8px auto 24px}
+.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:12px;font-size:17px}
+.btn.alt{background:transparent;color:var(--text);border:1px solid var(--line);margin-inline-start:10px}
+h2{font-size:28px;margin:48px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card .ic{font-size:30px}
+.card h3{margin:6px 0 4px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.table{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:420px}
+td,th{padding:12px 16px;text-align:right;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+code{background:var(--code);padding:2px 8px;border-radius:6px;direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace}
+.steps{counter-reset:s;display:grid;gap:12px}
+.steps .card{position:relative;padding-inline-start:64px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;inset-inline-start:18px;top:18px;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800}
+footer{text-align:center;color:var(--muted);padding:48px 0 32px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="logo">🎵</div>
+    <h1>ASKANDER BOT</h1>
+    <p>بوت ديسكورد بيشغّل أغاني وسبوتيفاي والقرآن الكريم بأصوات أشهر القراء، ومعاه لوحة تحكم بالأزرار.</p>
+    <a class="btn" id="invite" href="#" target="_blank" rel="noopener">➕ ضيف البوت لسيرفرك</a>
+    <a class="btn alt" href="#commands">الأوامر</a>
+  </section>
+
+  <h2>المميزات</h2>
+  <div class="grid">
+    <div class="card"><div class="ic">🎶</div><h3>أغاني من يوتيوب</h3><p>اكتب اسم الأغنية أو الرابط والبوت يشغّلها، وله طرق بديلة لو فيديو مااشتغلش.</p></div>
+    <div class="card"><div class="ic">🟢</div><h3>سبوتيفاي أوتوماتيك</h3><p>ابعت لينك أغنية من سبوتيفاي في الشات وهتشتغل لوحدها من غير أمر.</p></div>
+    <div class="card"><div class="ic">📖</div><h3>القرآن الكريم</h3><p>اختار القارئ والسورة: عبد الباسط، الحصري، المنشاوي، السديس، الشريم، المعيقلي وغيرهم.</p></div>
+    <div class="card"><div class="ic">🎛️</div><h3>لوحة تحكم</h3><p>أزرار إيقاف وتشغيل وتخطي وتكرار وخروج، مع اسم اللي شغّل الأغنية.</p></div>
+  </div>
+
+  <h2 id="commands">الأوامر</h2>
+  <div class="table"><table>
+    <tr><td><code>/play</code></td><td>شغّل أغنية بالاسم أو برابط يوتيوب أو سبوتيفاي</td></tr>
+    <tr><td><code>/quran</code></td><td>اختار القارئ واكتب اسم السورة أو رقمها</td></tr>
+    <tr><td><code>/pause</code> · <code>/resume</code></td><td>إيقاف مؤقت وإكمال التشغيل</td></tr>
+    <tr><td><code>/skip</code></td><td>تخطي الأغنية الحالية</td></tr>
+    <tr><td><code>/queue</code></td><td>عرض طابور الأغاني</td></tr>
+    <tr><td><code>/nowplaying</code></td><td>الأغنية الشغالة ومين طلبها</td></tr>
+    <tr><td><code>/loop</code></td><td>تكرار الأغنية الحالية</td></tr>
+    <tr><td><code>/stop</code></td><td>إيقاف ومسح الطابور والخروج من الروم</td></tr>
+  </table></div>
+
+  <h2>إزاي تبدأ؟</h2>
+  <div class="steps">
+    <div class="card"><h3>ضيف البوت</h3><p>اضغط زرار الإضافة واختار السيرفر بتاعك.</p></div>
+    <div class="card"><h3>ادخل روم صوتي</h3><p>لازم تكون جوه روم صوتي عشان البوت يدخل معاك.</p></div>
+    <div class="card"><h3>اكتب أمر</h3><p>جرّب <code>/play</code> واسم أغنية، أو ابعت لينك سبوتيفاي.</p></div>
+  </div>
+
+  <footer>صُنع بحب 🎧 · ASKANDER BOT</footer>
+</div>
+<script>
+// حط هنا الـ Application ID بتاع البوت (من Developer Portal ← General Information)
+const CLIENT_ID = "1554498625692770348";
+const PERMS = "3165248";
+const a = document.getElementById("invite");
+if (CLIENT_ID) {
+  a.href = "https://discord.com/oauth2/authorize?client_id=" + CLIENT_ID +
+           "&permissions=" + PERMS + "&scope=bot%20applications.commands";
+} else {
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    alert("لسه ماتحطش Application ID للبوت في الصفحة.");
+  });
+}
+</script>
+</body>
+</html>
